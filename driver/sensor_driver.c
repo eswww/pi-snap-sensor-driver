@@ -3,6 +3,7 @@
 #include <linux/kernel.h>
 #include <linux/fs.h>
 #include <linux/gpio.h>
+#include <linux/time.h>
 
 #define DEV_NAME "sensor_driver"
 
