@@ -38,13 +38,12 @@ int main(void)
         exit(0);
     }
 
-    /*
     // Testing
     while(count < 10)
     {
         // Clear buffer
         memset(buf, '\0', BUFSIZ);
-        strcpy(buf, "helwooosadfoas");
+        strcpy(buf, "test");
         
         printf("[%d] send: %s\n", count, buf);
         send(sock, buf, strlen(buf), 0);
@@ -52,10 +51,9 @@ int main(void)
         count++;
         sleep(2);
     }
-    */
 
     memset(buf, '\0', BUFSIZ);
-    strcpy(buf, "hasdfasfd");
+    strcpy(buf, "test");
 
     send(sock, buf, strlen(buf), 0);
 

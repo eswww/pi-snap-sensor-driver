@@ -10,12 +10,11 @@ sock.connect((_IP, _PORT))
 '''
 count = 0
 while count < 10:
-    msg = b'asdfasdfadsf'
-    msg = 'asdfasdf'.encode('utf8')
+    msg = 'test'.encode('utf8')
     sock.send(msg)
     count = count + 1
-    #time.sleep(2)
+    time.sleep(2)
 '''
 
-msg = 'asdfasa30df'.encode('utf8')
+msg = 'test'.encode('utf8')
 sock.send(msg)

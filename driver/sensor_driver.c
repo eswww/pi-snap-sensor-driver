@@ -6,15 +6,46 @@
 
 #define DEV_NAME "sensor_driver"
 
+// Using GPIO pin number (Not a WiringPi pin number)
+
 // Ultrasonic
-#define ECHO 8    // GPIO Pin Number (Not a WiringPi Pin Number)
-#define TRIG 11
+#define TRIG 23
+#define ECHO 24
 
 // LED
-#define R_LED 23
-#define G_LED 24
+#define R_LED 20
+#define G_LED 21
 
 MODULE_LICENSE("GPL");
+
+static int ultrasonic_read(void)
+{
+    struct timeval start_time, end_time;
+    unsigned long start, end, travel;
+
+    // Cannot use floating point in kernel driver
+    // distance = travel * 0.01715 (cm)
+
+    gpio_set_value(TRIG, 0);
+    udelay(2);
+
+    gpio_set_value(TRIG, 1);
+    udelay(10);
+    gpio_set_value(TRIG, 0);
+
+    // Measuring excution time
+    while(gpio_get_value(ECHO) == 0);
+    do_gettimeofday(&start_time);
+
+    while(gpio_get_value(ECHO == 1));
+    do_gettimeofday(&end_time);
+
+    start = (unsigned long)start_time.tv_sec*1000000 + (unsigned long)start_time.tv_usec;
+    end = (unsigned long)end_time.tv_sec*1000000 + (unsigned long)end_time.tv_usec;
+
+    travel = end - start;    // microsecond
+    return travel;
+}
 
 /*
 static int sensor_driver_open(struct inode *inode, struct file *file)
@@ -41,6 +72,8 @@ static int __init sensor_driver_init(void)
     printk("[SENSOR_DRIVER] Init\n");
 
     // Init GPIO
+    gpio_request_one(TRIG, GPIOF_OUT_INIT_LOW, "TRIG");
+    gpio_request_one(ECHO, GPIOF_IN, "ECHO");
     gpio_request_one(R_LED, GPIOF_OUT_INIT_LOW, "R_LED");
     gpio_request_one(G_LED, GPIOF_OUT_INIT_LOW, "G_LED");
 
@@ -54,6 +87,9 @@ static void __exit sensor_driver_exit(void)
     // Free GPIO
     gpio_set_value(R_LED, 0);
     gpio_set_value(G_LED, 1);
+
+    gpio_free(TRIG);
+    gpio_free(ECHO);
     gpio_free(R_LED);
     gpio_free(G_LED);
 }
