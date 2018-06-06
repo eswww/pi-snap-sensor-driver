@@ -15,3 +15,36 @@ Project for `pi-snap` sensor driver
 ```
 ~/linux-rpi
 ```
+
+## How to use
+
+### 1. Build
+
+**../pi-snap-sensor-driver/driver/**
+
+```bash
+$ make
+```
+
+**../pi-snap-sensor-driver/app/**
+
+```bash
+$ make
+```
+
+### 2. Load device driver
+
+**../pi-snap-sensor-driver/driver/**
+
+```bash
+$ insmod sensor_driver.ko
+$ sh mknod.sh
+```
+
+### 3. Run application
+
+_Before running an application, you must ensure that the socket server is running!_
+
+```bash
+$ ./sensor_app.out
+```
