@@ -74,5 +74,7 @@ int main(void)
         sleep(3);
     }
 
+    exit_application();
+
     return 0;
 }
