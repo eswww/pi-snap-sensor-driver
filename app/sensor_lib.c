@@ -7,7 +7,7 @@
 int exit_application(void)
 {
     int dev;
-    dev = open("/dev/sensor_drive", O_RDWR);
+    dev = open("/dev/sensor_driver", O_RDWR);
 
     // Device open error
     if(dev < 0)
