@@ -27,6 +27,7 @@
 #define G_LED 21
 
 MODULE_LICENSE("GPL");
+MODULE_DESCRIPTION("Device driver for ultrasonic sensor and LED");
 
 static struct cdev *cd_cdev;
 dev_t dev_num;
