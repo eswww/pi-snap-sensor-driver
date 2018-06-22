@@ -14,7 +14,7 @@
 #define SENSOR_CLOSE _IOWR(SENSOR_IOCTL_NUM, IOCTL_NUM4, unsigned long *)
 
 #define PORT 2324
-#define IP "127.0.0.1"
+#define IP "169.254.152.157"
 
 #define ENOUGH 1
 #define NOT_ENOUGH 0

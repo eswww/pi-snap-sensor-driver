@@ -81,7 +81,7 @@ int main(void)
         sensor_data = get_sensor_data();
 
         // Set LED and check distance
-        if(set_led(sensor_data, 500, 1000) == ENOUGH)
+        if(set_led(sensor_data, 3000, 4000) == ENOUGH)
         {
             // It's enough distance!
             strcpy(buf, "ENOUGH");
@@ -90,7 +90,7 @@ int main(void)
             printf("[INFO] Send enough signal\n");
         }
         else
-            printf("[INFO] It's not enough distance!\n");
+            printf("[INFO] It's not enough distance! - %lu\n", sensor_data);
 
         sleep(5);
     }

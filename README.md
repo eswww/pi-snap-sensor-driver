@@ -41,7 +41,17 @@ $ insmod sensor_driver.ko
 $ sh mknod.sh
 ```
 
-### 3. Run application
+### 3. Modify IP address
+
+#### ../pi-snap-sensor-driver/app/sensor_lib.h
+
+```c
+...
+#define IP "127.0.0.1"    // Here!
+...
+```
+
+### 4. Run application
 
 _Before running an application, you must ensure that the socket server is running!_
 
